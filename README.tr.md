@@ -2,7 +2,7 @@
 
 # Tududi — mrekinci sürümü
 
-`pixel-office-tududi`, Tududi v0.87 temelinde hazırlanmış bağımsız bir çataldır. Paket ve Docker imajı sürümü `0.87-po.3` olarak yayımlanır; uygulamanın adı **Tududi** olarak kalır.
+`pixel-office-tududi`, Tududi v0.87 temelinde hazırlanmış bağımsız bir çataldır. Paket ve Docker imajı sürümü `0.87-po.4` olarak yayımlanır; uygulamanın adı **Tududi** olarak kalır.
 
 [Piksel Ofis](https://github.com/mrekinci-com/pixel-office), ajanların görevlerini, projelerini ve notlarını bu uygulamada tutar. [Bu depo](https://github.com/mrekinci-com/pixel-office-tududi) yalnız iş defterini içerir; ofis paneli ve ajan çalıştırıcıları ayrı projededir. Tek başına görev yönetimi için de kullanılabilir. Orijinal proje [Chris Veleris / Tududi](https://github.com/chrisvel/tududi) adresindedir.
 
@@ -35,7 +35,7 @@ Kişisel terminal, komut çalıştırma paneli, terminal vekili, terminale ait p
 Node.js 22 tabanlı imajı bu depodan derleyin:
 
 ```sh
-docker build -t pixel-office-tududi:0.87-po.3 .
+docker build -t pixel-office-tududi:0.87-po.4 .
 cp .env.example .env
 openssl rand -hex 64
 ```
@@ -48,7 +48,7 @@ docker compose up -d
 
 Tarayıcıda `http://localhost:3002` adresini açın. Compose portu yalnız yerel arayüzde yayımlar. Veritabanı `./tududi_db`, yüklemeler `./uploads` dizininde saklanır. `PUID` ve `PGID` değerlerini gerekirse makinenizdeki dosya izinlerine göre değiştirin. Bu sürüm için hazır bir imaj kaydı varsayılmaz; Compose yerel imajı kullanır veya kaynaktan derler.
 
-Piksel Ofis'e geçerken mevcut veritabanı ve yüklemeleri yedekleyin; yalnız imajı `pixel-office-tududi:0.87-po.3` olarak değiştirin. `PORT=9393`, ağ alanı paylaşımı, vekilin Host başlığı ve mevcut bağlama ayarları için uyum belgesini izleyin. Bu depodaki örnek Compose, tek başına yerel kullanım içindir.
+Piksel Ofis'e geçerken mevcut veritabanı ve yüklemeleri yedekleyin; yalnız imajı `pixel-office-tududi:0.87-po.4` olarak değiştirin. `PORT=9393`, ağ alanı paylaşımı, vekilin Host başlığı ve mevcut bağlama ayarları için uyum belgesini izleyin. Bu depodaki örnek Compose, tek başına yerel kullanım içindir.
 
 ## Erişim ayarları
 
@@ -79,8 +79,6 @@ npm run frontend:test -- --runInBand
 Arka uç doğrudan JavaScript çalıştırır; ayrı bir dönüştürme/çıktı üretme aşaması yoktur. `backend:build`, sunucuyu başlatmadan üretim JavaScript kaynaklarının Node sözdizimi denetimini yapar. Jest testleri geçici test veritabanları kullanır. Dış panel testleri gerçek RSA imzalarıyla, ağ sunucusu açmadan çalışır. Playwright uçtan uca test betikleri servis başlatır; yalnız buna izin verilen ortamda çalıştırılmalıdır.
 
 Varsayılan kullanıcı dili ve ön yüz yedek dili İngilizcedir. Mevcut dil tercihleri ve tarayıcı dili algılama davranışı korunur.
-
-Takvimdeki isteğe bağlı borsa tatili katmanı, 2025–2026 tam gün kapanışlarıyla sınırlıdır; başka yıllar için çıkarım yapmaz.
 
 ## Lisans ve atıf
 

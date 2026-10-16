@@ -1,6 +1,6 @@
 services:
   tududi:
-    image: pixel-office-tududi:0.87-po.3
+    image: pixel-office-tududi:0.87-po.4
     build: .
     container_name: pixel-office-tududi
     env_file: .env

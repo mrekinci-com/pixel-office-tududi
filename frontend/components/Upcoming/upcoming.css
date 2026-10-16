@@ -140,16 +140,6 @@
     height: 1.5rem;
     flex-shrink: 0;
 }
-.upcoming-closure {
-    pointer-events: auto;
-    font-size: 0.6rem;
-    line-height: 1.1;
-    color: #92400e;
-    background: #fef3c7;
-    border-radius: 0.2rem;
-    padding: 0.15rem;
-    max-width: 100%;
-}
 .upcoming-day-tasks {
     position: relative;
     pointer-events: none;
@@ -292,10 +282,6 @@
 }
 .dark .upcoming-day.is-weekend .upcoming-day-heading {
     color: #9ca3af;
-}
-.dark .upcoming-closure {
-    color: #fde68a;
-    background: #78350f;
 }
 .dark .upcoming-task-chip {
     border-color: #4b5563;

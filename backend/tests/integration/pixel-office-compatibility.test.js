@@ -24,7 +24,7 @@ afterAll(() => {
 });
 
 test('office account, API key and work record flow retains its API contract', async () => {
-    expect((await api('get', '/api/version')).body.version).toBe('0.87-po.3');
+    expect((await api('get', '/api/version')).body.version).toBe('0.87-po.4');
     const owner = await createTestUser({ email: 'office-owner@example.test' });
     await Role.destroy({ where: {} });
     await Role.create({ user_id: owner.id, is_admin: true });

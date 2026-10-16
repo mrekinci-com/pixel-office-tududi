@@ -47,7 +47,7 @@ The terminal page, project panel, terminal uploads, and clipboard transfer have 
 
 ## Deployment steps
 
-The release owner should change the image in the Pixel Office repository to `pixel-office-tududi:0.87-po.3`, preserving its network arrangement, `.env` files, and database/upload mounts. This repository's changes do not update the neighboring Compose configuration or start containers.
+The release owner should change the image in the Pixel Office repository to `pixel-office-tududi:0.87-po.4`, preserving its network arrangement, `.env` files, and database/upload mounts. This repository's changes do not update the neighboring Compose configuration or start containers.
 
 For standard standalone use, leave the panel variable unset. Office deployments that require the existing private access behavior should keep an explicit `PANEL_ACCESS_ENABLED=false`. The optional external panel now uses generic JWT/JWKS configuration; old provider-specific settings alone are insufficient. See the [English README](../README.md#access-settings) or [Turkish README](../README.tr.md#erişim-ayarları).
 

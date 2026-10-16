@@ -29,7 +29,7 @@ async function renderAbout(lng = 'tr', isDarkMode = false) {
 beforeEach(() => {
     global.fetch = jest.fn().mockResolvedValue({
         ok: true,
-        json: async () => ({ version: '0.87-po.3' }),
+        json: async () => ({ version: '0.87-po.4' }),
     });
 });
 
@@ -58,7 +58,7 @@ test.each([
                 translation.adaptedBy.replace('{{name}}', 'mrekinci')
             )
         ).toBeInTheDocument();
-        expect(await screen.findByText(/0\.87-po\.3/)).toBeInTheDocument();
+        expect(await screen.findByText(/0\.87-po\.4/)).toBeInTheDocument();
         expect(
             screen.getByRole('link', { name: translation.maintainerGitHub })
         ).toHaveAttribute('href', 'https://github.com/mrekinci-com');
@@ -121,7 +121,7 @@ test.each([
             jest.replaceProperty(PIXEL_OFFICE_EDITION, 'communityLinks', []);
         }
         await renderAbout();
-        await screen.findByText(/0\.87-po\.3/);
+        await screen.findByText(/0\.87-po\.4/);
         expect(
             screen.queryByRole('region', { name: 'Geliştirmeyi Destekle' }) !==
                 null

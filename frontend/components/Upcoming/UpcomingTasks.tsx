@@ -42,11 +42,9 @@ import {
     VIEW_KEY,
     PROJECTS_KEY,
 } from './upcomingDates';
-import { isBistClosed } from '../../data/bistClosures';
 import './upcoming.css';
 
 const DRAG_TYPE = 'application/x-tududi-task';
-const CLOSURES_KEY = 'upcoming_show_bist_closures';
 const MAX_CHIPS = 3;
 
 const UpcomingTasks: React.FC = () => {
@@ -57,22 +55,6 @@ const UpcomingTasks: React.FC = () => {
     const [hiddenProjects, setHiddenProjects] =
         useState<string[]>(readHiddenProjects);
     const [showCompleted, setShowCompleted] = useState(false);
-    // Exchange holidays are an optional layer; other projects can turn it off.
-    const [showClosures, setShowClosures] = useState(() => {
-        try {
-            return localStorage.getItem(CLOSURES_KEY) !== 'off';
-        } catch {
-            return true;
-        }
-    });
-    const toggleClosures = (value: boolean) => {
-        setShowClosures(value);
-        try {
-            localStorage.setItem(CLOSURES_KEY, value ? 'on' : 'off');
-        } catch {
-            // The choice still applies for this visit.
-        }
-    };
     const [today, setToday] = useState(() =>
         todayInTimezone(new Date(), getCurrentUser()?.timezone)
     );
@@ -444,15 +426,6 @@ const UpcomingTasks: React.FC = () => {
                 />
                 {t('upcoming.showCompleted')}
             </label>
-            <label className="inline-flex items-center gap-2 mt-4 mb-4 ml-6 text-sm cursor-pointer">
-                <input
-                    type="checkbox"
-                    role="switch"
-                    checked={showClosures}
-                    onChange={(event) => toggleClosures(event.target.checked)}
-                />
-                {t('upcoming.showClosures')}
-            </label>
             {actionError && (
                 <div className="upcoming-error" role="alert">
                     <span>{actionError}</span>
@@ -583,16 +556,6 @@ const UpcomingTasks: React.FC = () => {
                                         >
                                             {Number(day.slice(8, 10))}
                                         </time>
-                                        {showClosures && isBistClosed(day) && (
-                                            <span
-                                                className="upcoming-closure"
-                                                title={t(
-                                                    'upcoming.closureTitle'
-                                                )}
-                                            >
-                                                {t('upcoming.closed')}
-                                            </span>
-                                        )}
                                     </div>
                                     <div className="upcoming-day-tasks">
                                         {dayTasks

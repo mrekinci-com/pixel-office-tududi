@@ -130,7 +130,7 @@ afterEach(() => {
     jest.restoreAllMocks();
 });
 
-it('loads all tasks once, defaults to calendar on desktop and uses Turkish dates/holidays', async () => {
+it('loads all tasks once, defaults to calendar on desktop and uses Turkish dates', async () => {
     const { container } = showPage();
     expect(await screen.findByText('Ekim 2026')).toBeInTheDocument();
     expect(global.fetch).toHaveBeenCalledWith(
@@ -144,9 +144,6 @@ it('loads all tasks once, defaults to calendar on desktop and uses Turkish dates
     ).toHaveLength(1);
     expect(container.querySelectorAll('[data-date]')).toHaveLength(42);
     expect(screen.getByText('Pazartesi')).toBeInTheDocument();
-    expect(
-        within(cell(container, '2026-10-29')).getByText('Borsa kapalı')
-    ).toHaveAttribute('title', 'Borsa İstanbul resmi tatili');
     expect(cell(container, '2026-10-07')).toHaveClass('is-today');
     expect(
         screen.queryByRole('button', { name: 'Biten kontrol' })
@@ -163,7 +160,6 @@ it('loads all tasks once, defaults to calendar on desktop and uses Turkish dates
     for (let i = 0; i < 12; i++)
         fireEvent.click(screen.getByRole('button', { name: 'Sonraki ay' }));
     expect(screen.getByText('Ekim 2027')).toBeInTheDocument();
-    expect(screen.queryByText('Borsa kapalı')).not.toBeInTheDocument();
 });
 
 it('defaults to agenda on phones, groups dated tasks and summarizes unfinished work', async () => {

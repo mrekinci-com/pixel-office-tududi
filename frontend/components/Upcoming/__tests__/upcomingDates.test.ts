@@ -1,5 +1,4 @@
 import { Task } from '../../../entities/Task';
-import { isBistClosed, bistClosures } from '../../../data/bistClosures';
 import {
     addDays,
     agendaGroup,
@@ -96,14 +95,6 @@ describe('Upcoming civil dates', () => {
         expect(formatCivilDate('2026-10-26', 'tr', { weekday: 'long' })).toBe(
             'Pazartesi'
         );
-    });
-
-    it('marks only the supplied official full-day closures', () => {
-        expect(bistClosures.size).toBe(29);
-        expect(isBistClosed('2026-10-29')).toBe(true);
-        expect(isBistClosed('2025-06-09')).toBe(true);
-        expect(isBistClosed('2026-10-28')).toBe(false);
-        expect(isBistClosed('2027-10-29')).toBe(false);
     });
 
     it('stores valid view/filter preferences and rejects malformed values', () => {

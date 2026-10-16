@@ -1,6 +1,6 @@
 {
   "name": "pixel-office-tududi",
-  "version": "0.87-po.3",
+  "version": "0.87-po.4",
   "description": "Self-hosted task management with hierarchical organization, multi-language support, and Telegram integration.",
   "directories": {
     "test": "test"

@@ -2,7 +2,7 @@
 
 **English** | [Türkçe](README.tr.md)
 
-`pixel-office-tududi` is an independent fork of Tududi v0.87. The package and Docker image version is `0.87-po.3`; the application remains **Tududi**.
+`pixel-office-tududi` is an independent fork of Tududi v0.87. The package and Docker image version is `0.87-po.4`; the application remains **Tududi**.
 
 [Pixel Office](https://github.com/mrekinci-com/pixel-office) stores its agents' tasks, projects, and notes in this application. [This repository](https://github.com/mrekinci-com/pixel-office-tududi) contains the task management application; the office dashboard and agent runners live in the separate Pixel Office project. It also works as a standalone task manager. The original project is [Chris Veleris / Tududi](https://github.com/chrisvel/tududi).
 
@@ -35,7 +35,7 @@ The personal terminal, command panel, terminal proxy, terminal clipboard/image t
 Build the Node.js 22 image from this repository:
 
 ```sh
-docker build -t pixel-office-tududi:0.87-po.3 .
+docker build -t pixel-office-tududi:0.87-po.4 .
 cp .env.example .env
 openssl rand -hex 64
 ```
@@ -48,7 +48,7 @@ docker compose up -d
 
 Open `http://localhost:3002`. Compose publishes the port on the local interface only. The database is stored in `./tududi_db` and uploads in `./uploads`. Adjust `PUID` and `PGID` to match your host's file permissions if needed. No prebuilt image registry is assumed for this edition; Compose uses the local image or builds it from source.
 
-For a Pixel Office deployment, back up the existing database and uploads, then update the image to `pixel-office-tududi:0.87-po.3`. Follow the compatibility contract for `PORT=9393`, the shared network namespace, the proxy's Host header, and existing mounts. The Compose example in this repository is for standalone local use.
+For a Pixel Office deployment, back up the existing database and uploads, then update the image to `pixel-office-tududi:0.87-po.4`. Follow the compatibility contract for `PORT=9393`, the shared network namespace, the proxy's Host header, and existing mounts. The Compose example in this repository is for standalone local use.
 
 ## Access settings
 
@@ -79,8 +79,6 @@ npm run frontend:test -- --runInBand
 The backend runs JavaScript directly. `backend:build` checks the production sources with Node's syntax checker without starting the server. Jest uses temporary test databases. The external panel tests use real RSA signatures without opening a network server. The Playwright end-to-end scripts start services and should only run in an environment where that is permitted.
 
 English is the default user language and frontend fallback. Existing language preferences and browser language detection are preserved.
-
-The optional stock exchange holiday layer in the calendar covers full-day closures in 2025–2026 only; it makes no assumptions about other years.
 
 ## License and attribution
 
