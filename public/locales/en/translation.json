@@ -53,7 +53,8 @@
     "completed": "Completed",
     "allTasks": "All Tasks",
     "unpinView": "Unpin view",
-    "pinView": "Pin view"
+    "pinView": "Pin view",
+    "terminal": "Terminal"
   },
   "navigation": {
     "home": "Home",
@@ -1235,8 +1236,32 @@
     "version": "Version",
     "adaptedBy": "This is {{name}}'s customized edition of Tududi; Pixel Office uses this edition.",
     "supportDevelopment": "Support Development",
+    "supportAndCommunity": "Support & community",
     "community": "Community",
     "maintainerGitHub": "Maintainer on GitHub",
     "attribution": "Tududi was originally developed by Chris Veleris (<upstream>github.com/chrisvel/tududi</upstream>), MIT license."
+  },
+  "terminal": {
+    "button": "Terminal",
+    "openInNewWindow": "Open in new window",
+    "close": "Close Terminal panel",
+    "resize": "Resize Terminal panel",
+    "addImage": "Add image",
+    "selectImages": "Select images",
+    "imageUploading": "Uploading image…",
+    "imageAdded": "Image added",
+    "imageTooLarge": "Image must be 15 MB or smaller.",
+    "imageType": "Use a PNG, JPEG, GIF or WebP image.",
+    "imageSession": "Session expired. Please sign in again.",
+    "imageForbidden": "You do not have permission to upload images.",
+    "imageDisabled": "Image uploads are disabled.",
+    "imageError": "Image could not be uploaded. Please try again.",
+    "terminalNotReady": "Terminal is not ready yet. Please try again.",
+    "loading": "Loading Terminal…",
+    "disabled": "Terminal is not enabled for this account.",
+    "claudeHint": "Claude Code on the host",
+    "codexHint": "Codex on the host",
+    "shortcuts": "Ctrl/Cmd+V: paste · Ctrl/Cmd+C: copy selection (interrupt when empty)",
+    "imagesHint": "Paste, drop or select images (up to 15 MB each)."
   }
 }

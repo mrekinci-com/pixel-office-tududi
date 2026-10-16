@@ -115,13 +115,11 @@ const About: React.FC<AboutProps> = ({ isDarkMode = false }) => {
                 </div>
                 <LinkSection
                     id="about-support"
-                    title={t('about.supportDevelopment', 'Support Development')}
-                    links={PIXEL_OFFICE_EDITION.supportLinks}
-                />
-                <LinkSection
-                    id="about-community"
-                    title={t('about.community', 'Community')}
-                    links={PIXEL_OFFICE_EDITION.communityLinks}
+                    title={t('about.supportAndCommunity', 'Support & community')}
+                    links={[
+                        ...PIXEL_OFFICE_EDITION.supportLinks,
+                        ...PIXEL_OFFICE_EDITION.communityLinks,
+                    ]}
                 />
                 <p className="border-t border-gray-200 dark:border-gray-700 pt-6 text-sm text-gray-500 dark:text-gray-400">
                     <Trans

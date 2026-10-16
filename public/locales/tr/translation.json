@@ -54,7 +54,8 @@
     "createNew": "Yeni Oluştur",
     "views": "Görünümler",
     "unpinView": "Görünümü sabitlemeyi kaldır",
-    "pinView": "Görünümü sabitle"
+    "pinView": "Görünümü sabitle",
+    "terminal": "Terminal"
   },
   "navigation": {
     "home": "Ana Sayfa",
@@ -1243,8 +1244,32 @@
     "version": "Sürüm",
     "adaptedBy": "Bu, {{name}} tarafından kendi kullanımı için özelleştirilmiş Tududi sürümüdür; Piksel Ofis de bu sürümü kullanır.",
     "supportDevelopment": "Geliştirmeyi Destekle",
+    "supportAndCommunity": "Destek ve topluluk",
     "community": "Topluluk",
     "maintainerGitHub": "Uyarlayanın GitHub hesabı",
     "attribution": "Tududi'nin orijinal geliştiricisi Chris Veleris'tir (<upstream>github.com/chrisvel/tududi</upstream>), MIT lisansı."
+  },
+  "terminal": {
+    "button": "Terminal",
+    "openInNewWindow": "Yeni pencerede aç",
+    "close": "Terminal panelini kapat",
+    "resize": "Terminal panelinin genişliğini ayarla",
+    "addImage": "Resim ekle",
+    "selectImages": "Resimleri seç",
+    "imageUploading": "Resim yükleniyor…",
+    "imageAdded": "Resim eklendi",
+    "imageTooLarge": "Resim boyutu en fazla 15 MB olabilir.",
+    "imageType": "PNG, JPEG, GIF veya WebP resmi kullanın.",
+    "imageSession": "Oturum sona erdi. Lütfen tekrar giriş yapın.",
+    "imageForbidden": "Resim yükleme izniniz yok.",
+    "imageDisabled": "Resim yükleme kapalı.",
+    "imageError": "Resim yüklenemedi. Lütfen tekrar deneyin.",
+    "terminalNotReady": "Terminal henüz hazır değil. Lütfen tekrar deneyin.",
+    "loading": "Terminal yükleniyor…",
+    "disabled": "Bu hesap için Terminal etkin değil.",
+    "claudeHint": "Ana makinede Claude Code",
+    "codexHint": "Ana makinede Codex",
+    "shortcuts": "Ctrl/Cmd+V: yapıştır · Ctrl/Cmd+C: seçimi kopyala (seçim yoksa kes)",
+    "imagesHint": "Görsel yapıştırın, sürükleyin veya seçin (her biri en fazla 15 MB)."
   }
 }

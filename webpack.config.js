@@ -34,6 +34,17 @@ module.exports = {
         historyApiFallback: true,
         proxy: [
             {
+                context: [
+                    '/terminal-proxy',
+                    '/api/terminal',
+                    '/api/v1/terminal',
+                ],
+                target: 'http://localhost:3002',
+                // Keep the browser authority for the same-origin gate.
+                changeOrigin: false,
+                ws: true,
+            },
+            {
                 context: ['/api', '/locales'],
                 target: 'http://localhost:3002',
                 changeOrigin: true,

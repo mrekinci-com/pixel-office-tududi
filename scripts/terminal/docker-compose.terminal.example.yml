@@ -1,0 +1,17 @@
+# Standalone overlay: docker compose -f docker-compose.yml \
+#   -f scripts/terminal/docker-compose.terminal.example.yml config
+# Replace /srv/tududi-terminal with the host paths prepared for your user.
+# Match PGID to the socket/upload sharing group. Do not mount CLI credentials.
+services:
+  tududi:
+    environment:
+      TERMINAL_ENABLED: "true"
+      TERMINAL_SOCKET: /run/tududi-terminal/ttyd.sock
+      TERMINAL_ALLOWED_EMAILS: owner@example.com
+      TERMINAL_UPLOAD_DIR: /app/terminal-uploads
+      TERMINAL_UPLOAD_HOST_DIR: /srv/tududi-terminal/uploads
+      TERMINAL_LABEL: Terminal
+      TERMINAL_CLI: claude # or codex; informational, set the host unit too
+    volumes:
+      - /srv/tududi-terminal/socket:/run/tududi-terminal:ro
+      - /srv/tududi-terminal/uploads:/app/terminal-uploads

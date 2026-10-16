@@ -6,9 +6,11 @@ import {
     InboxIcon,
     ListBulletIcon,
     ClockIcon,
+    CommandLineIcon,
 } from '@heroicons/react/24/solid';
 import { PlusCircleIcon } from '@heroicons/react/24/outline';
 import { useStore } from '../../store/useStore';
+import { useTerminalConfig } from '../Terminal/TerminalConfig';
 import { loadInboxItemsToStore } from '../../utils/inboxService';
 
 interface SidebarNavProps {
@@ -25,6 +27,7 @@ const SidebarNav: React.FC<SidebarNavProps> = ({
 }) => {
     const { t } = useTranslation();
     const store = useStore();
+    const { config: terminal } = useTerminalConfig();
 
     const inboxItemsCount = store.inboxStore.pagination.total;
 
@@ -33,6 +36,15 @@ const SidebarNav: React.FC<SidebarNavProps> = ({
     }, []);
 
     const navLinks = [
+        ...(terminal
+            ? [
+                  {
+                      path: '/terminal',
+                      title: t('sidebar.terminal', 'Terminal'),
+                      icon: <CommandLineIcon className="h-5 w-5" />,
+                  },
+              ]
+            : []),
         {
             path: '/inbox',
             title: t('sidebar.inbox', 'Inbox'),
@@ -58,7 +70,7 @@ const SidebarNav: React.FC<SidebarNavProps> = ({
     ];
 
     const isActive = (path: string, query?: string) => {
-        if (path === '/inbox' || path === '/today') {
+        if (path === '/inbox' || path === '/today' || path === '/terminal') {
             const isPathMatch = location.pathname === path;
             return isPathMatch
                 ? 'bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white'

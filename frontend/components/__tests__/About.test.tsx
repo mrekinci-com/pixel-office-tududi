@@ -29,7 +29,7 @@ async function renderAbout(lng = 'tr', isDarkMode = false) {
 beforeEach(() => {
     global.fetch = jest.fn().mockResolvedValue({
         ok: true,
-        json: async () => ({ version: '0.87-po.4' }),
+        json: async () => ({ version: '0.87-po.5' }),
     });
 });
 
@@ -58,7 +58,7 @@ test.each([
                 translation.adaptedBy.replace('{{name}}', 'mrekinci')
             )
         ).toBeInTheDocument();
-        expect(await screen.findByText(/0\.87-po\.4/)).toBeInTheDocument();
+        expect(await screen.findByText(/0\.87-po\.5/)).toBeInTheDocument();
         expect(
             screen.getByRole('link', { name: translation.maintainerGitHub })
         ).toHaveAttribute('href', 'https://github.com/mrekinci-com');
@@ -69,27 +69,21 @@ test.each([
             'https://github.com/mrekinci-com/pixel-office'
         );
 
-        const support = screen.getByRole('region', {
-            name: translation.supportDevelopment,
+        const box = screen.getByRole('region', {
+            name: translation.supportAndCommunity,
         });
-        const community = screen.getByRole('region', {
-            name: translation.community,
-        });
-        expect(within(support).getAllByRole('link')).toHaveLength(1);
+        expect(within(box).getAllByRole('link')).toHaveLength(2);
         expect(
-            within(support).getByRole('link', { name: 'GitHub Sponsors' })
+            within(box).getByRole('link', { name: 'GitHub Sponsors' })
         ).toHaveAttribute('href', 'https://github.com/sponsors/mrekinci-com');
-        expect(within(community).getAllByRole('link')).toHaveLength(1);
         expect(
-            within(community).getByRole('link', { name: 'GitHub' })
+            within(box).getByRole('link', { name: 'GitHub' })
         ).toHaveAttribute('href', 'https://github.com/mrekinci-com');
-        for (const box of [support, community]) {
-            expect(box).toHaveClass('bg-white', 'dark:bg-gray-800');
-            expect(box.querySelector('.grid')).toHaveClass(
-                'grid-cols-2',
-                'gap-4'
-            );
-        }
+        expect(box).toHaveClass('bg-white', 'dark:bg-gray-800');
+        expect(box.querySelector('.grid')).toHaveClass('grid-cols-2', 'gap-4');
+        expect(
+            screen.queryByRole('region', { name: translation.community })
+        ).toBeNull();
 
         const links = screen.getAllByRole('link');
         expect(links).toHaveLength(5);
@@ -112,7 +106,7 @@ test.each([
     [false, true],
     [true, true],
 ])(
-    'empty lists hide their boxes independently (support: %s, community: %s)',
+    'one combined box shows whatever links remain (support empty: %s, community empty: %s)',
     async (hideSupport, hideCommunity) => {
         if (hideSupport) {
             jest.replaceProperty(PIXEL_OFFICE_EDITION, 'supportLinks', []);
@@ -121,14 +115,11 @@ test.each([
             jest.replaceProperty(PIXEL_OFFICE_EDITION, 'communityLinks', []);
         }
         await renderAbout();
-        await screen.findByText(/0\.87-po\.4/);
+        await screen.findByText(/0\.87-po\.5/);
         expect(
-            screen.queryByRole('region', { name: 'Geliştirmeyi Destekle' }) !==
+            screen.queryByRole('region', { name: 'Destek ve topluluk' }) !==
                 null
-        ).toBe(!hideSupport);
-        expect(
-            screen.queryByRole('region', { name: 'Topluluk' }) !== null
-        ).toBe(!hideCommunity);
+        ).toBe(!(hideSupport && hideCommunity));
         expect(screen.getAllByRole('link')).toHaveLength(
             5 - Number(hideSupport) - Number(hideCommunity)
         );

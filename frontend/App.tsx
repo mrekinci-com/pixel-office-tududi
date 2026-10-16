@@ -18,6 +18,8 @@ import Calendar from './components/Calendar';
 import ProfileSettings from './components/Profile/ProfileSettings';
 import About from './components/About';
 import Layout from './Layout';
+import TerminalPage from './components/Terminal/TerminalPage';
+import { TerminalProvider } from './components/Terminal/TerminalConfig';
 import { User } from './entities/User';
 import TasksToday from './components/Task/TasksToday';
 import TaskDetails from './components/Task/TaskDetails';
@@ -168,14 +170,16 @@ const App: React.FC = () => {
                     <>
                         <Route
                             element={
-                                <Layout
-                                    currentUser={currentUser}
-                                    setCurrentUser={setCurrentUser}
-                                    isDarkMode={isDarkMode}
-                                    toggleDarkMode={toggleDarkMode}
-                                >
-                                    <Outlet />
-                                </Layout>
+                                <TerminalProvider key={currentUser.uid}>
+                                    <Layout
+                                        currentUser={currentUser}
+                                        setCurrentUser={setCurrentUser}
+                                        isDarkMode={isDarkMode}
+                                        toggleDarkMode={toggleDarkMode}
+                                    >
+                                        <Outlet />
+                                    </Layout>
+                                </TerminalProvider>
                             }
                         >
                             <Route
@@ -220,6 +224,10 @@ const App: React.FC = () => {
                                         <Tasks />
                                     </Suspense>
                                 }
+                            />
+                            <Route
+                                path="/terminal"
+                                element={<TerminalPage />}
                             />
                             <Route path="/inbox" element={<InboxItems />} />
                             <Route path="/projects" element={<Projects />} />

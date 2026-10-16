@@ -1,0 +1,23 @@
+# Copy to ~/.config/systemd/user/terminal.service, replace the placeholders.
+# The socket directory is shared privately with Tududi; never publish ttyd TCP.
+[Unit]
+Description=Optional Tududi Terminal (private ttyd socket)
+
+[Service]
+Type=simple
+WorkingDirectory=%h/terminal
+# Include the directory containing your installed CLI (and node, if needed).
+Environment=PATH=%h/.local/bin:/usr/local/bin:/usr/bin:/bin
+Environment=TERMINAL_CLI=claude
+Environment=TERMINAL_SESSION=terminal
+Environment=TERMINAL_WORKDIR=%h/workspace
+Environment=TERMINAL_STATE_DIR=%h/.local/state/tududi-terminal
+UMask=0007
+ExecStartPre=/usr/bin/mkdir -p %h/.local/share/tududi-terminal/socket
+ExecStartPre=/usr/bin/chmod 0770 %h/.local/share/tududi-terminal/socket
+ExecStart=%h/.local/bin/ttyd -W -i %h/.local/share/tududi-terminal/socket/ttyd.sock -m 4 -O -t enableTrzsz=false -t enableZmodem=false %h/terminal/launch.sh
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=default.target

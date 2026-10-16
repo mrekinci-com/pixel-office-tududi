@@ -43,11 +43,11 @@ This fork is maintained at [pixel-office-tududi](https://github.com/mrekinci-com
 - Notification read state, an unread-only bell list, and marking old notifications read when a task is completed, archived, deleted, or moved to a later date.
 - The data model, UIDs, sharing/permission behavior, administrator account management, and API keys.
 
-The terminal page, project panel, terminal uploads, and clipboard transfer have been removed. The office client does not depend on them. The office proxy's generic WebSocket upgrade handling remains in the neighboring project; this edition has no terminal WebSocket server.
+The personal terminal implementation and its project mapping were removed. Version `0.87-po.5` adds a generic, optional Terminal for Claude Code or Codex, with a session/email-gated HTTP and WebSocket proxy, clipboard bridge and private image uploads. It is off by default and the office client does not depend on it. API keys cannot access it. See [Optional terminal](../README.md#optional-terminal) for the opt-in host setup; existing office network, task and authentication contracts are unchanged.
 
 ## Deployment steps
 
-The release owner should change the image in the Pixel Office repository to `pixel-office-tududi:0.87-po.4`, preserving its network arrangement, `.env` files, and database/upload mounts. This repository's changes do not update the neighboring Compose configuration or start containers.
+The release owner should change the image in the Pixel Office repository to `pixel-office-tududi:0.87-po.5`, preserving its network arrangement, `.env` files, and database/upload mounts. This repository's changes do not update the neighboring Compose configuration or start containers.
 
 For standard standalone use, leave the panel variable unset. Office deployments that require the existing private access behavior should keep an explicit `PANEL_ACCESS_ENABLED=false`. The optional external panel now uses generic JWT/JWKS configuration; old provider-specific settings alone are insufficient. See the [English README](../README.md#access-settings) or [Turkish README](../README.tr.md#erişim-ayarları).
 

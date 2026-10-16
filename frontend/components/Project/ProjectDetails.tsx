@@ -40,6 +40,8 @@ import IconSortDropdown from '../Shared/IconSortDropdown';
 import LoadingSpinner from '../Shared/LoadingSpinner';
 import { usePersistedModal } from '../../hooks/usePersistedModal';
 import { getApiPath } from '../../config/paths';
+import TerminalPanel from '../Terminal/TerminalPanel';
+import { useTerminalConfig } from '../Terminal/TerminalConfig';
 import ProjectInsightsPanel from './ProjectInsightsPanel';
 import ProjectBanner from './ProjectBanner';
 import BannerEditModal from './BannerEditModal';
@@ -49,6 +51,8 @@ import { useProjectMetrics } from './useProjectMetrics';
 
 const ProjectDetails: React.FC = () => {
     const UI_OPTIONS_KEY = 'ui_app_options';
+    const { config: terminal } = useTerminalConfig();
+    const [terminalOpen, setTerminalOpen] = useState(false);
 
     const { uidSlug } = useParams<{ uidSlug: string }>();
     const navigate = useNavigate();
@@ -898,8 +902,20 @@ const ProjectDetails: React.FC = () => {
         </div>
     );
 
-    return (
+    const projectContent = (
         <div className="w-full pb-12">
+            {terminal && (
+                <div className="flex justify-end px-4 pb-2">
+                    <button
+                        type="button"
+                        aria-expanded={terminalOpen}
+                        onClick={() => setTerminalOpen((open) => !open)}
+                        className="px-3 py-1 text-sm rounded-lg border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
+                    >
+                        {t('sidebar.terminal', 'Terminal')}
+                    </button>
+                </div>
+            )}
             <ProjectBanner
                 project={project}
                 areas={areas}
@@ -1058,17 +1074,21 @@ const ProjectDetails: React.FC = () => {
                                 </div>
                             </div>
 
-                            <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 items-start transition-all duration-300">
+                            <div
+                                className={`grid grid-cols-1 gap-6 items-start transition-all duration-300 ${terminalOpen ? '' : 'xl:grid-cols-3'}`}
+                            >
                                 <div
                                     className={`flex justify-center transition-all duration-300 relative z-10 ${
-                                        showMetrics
-                                            ? 'xl:col-span-2 translate-x-0'
-                                            : 'xl:col-span-3 translate-x-0'
+                                        terminalOpen
+                                            ? 'translate-x-0'
+                                            : showMetrics
+                                              ? 'xl:col-span-2 translate-x-0'
+                                              : 'xl:col-span-3 translate-x-0'
                                     }`}
                                 >
                                     <div
                                         className={`w-full max-w-5xl transition-all duration-300 ${
-                                            showMetrics
+                                            showMetrics || terminalOpen
                                                 ? 'xl:translate-x-0'
                                                 : 'xl:translate-x-6'
                                         }`}
@@ -1102,7 +1122,13 @@ const ProjectDetails: React.FC = () => {
                                     </div>
                                 </div>
 
-                                <div className="xl:col-span-1">
+                                <div
+                                    className={
+                                        terminalOpen
+                                            ? 'min-w-0'
+                                            : 'xl:col-span-1'
+                                    }
+                                >
                                     <div
                                         className={`transition-all duration-300 ease-in-out ${
                                             showMetrics
@@ -1227,6 +1253,17 @@ const ProjectDetails: React.FC = () => {
                 </div>
             </div>
         </div>
+    );
+    return (
+        <TerminalPanel
+            baseUrl={terminal?.url || null}
+            label={terminal?.label}
+            isOpen={terminalOpen}
+            uploadEnabled={terminal?.uploadEnabled}
+            onClose={() => setTerminalOpen(false)}
+        >
+            {projectContent}
+        </TerminalPanel>
     );
 };
 

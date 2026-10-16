@@ -69,6 +69,17 @@ app.use(
     })
 );
 
+// Terminal routes authenticate browser sessions before any body is read.
+const terminalProxy = require('./services/TerminalProxy');
+app.terminalSessionMiddleware = sessionMiddleware;
+app.terminalPanelMiddleware = panelAccess.middleware;
+app.use(terminalProxy.proxyHttp);
+app.use('/api', require('./routes/Terminal'));
+if (API_VERSION && API_BASE_PATH !== '/api') {
+    app.use(API_BASE_PATH, require('./routes/Terminal'));
+}
+app.get('/terminal', terminalProxy.requireTerminalSession);
+
 // Body parsing
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
@@ -245,6 +256,12 @@ async function startServer() {
             console.log(`Server running on port ${config.port}`);
             console.log(`Server listening on http://localhost:${config.port}`);
         });
+
+        terminalProxy.attachUpgrade(
+            server,
+            sessionMiddleware,
+            panelAccess.middleware
+        );
 
         server.on('error', (err) => {
             console.error('Server error:', err);
