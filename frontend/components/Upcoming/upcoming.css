@@ -1,0 +1,359 @@
+.upcoming-page {
+    width: 100%;
+    min-width: 0;
+    padding: 1rem clamp(0.5rem, 2vw, 1.5rem) 2rem;
+}
+.upcoming-page button:focus-visible,
+.upcoming-page input:focus-visible,
+.upcoming-page section:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+.upcoming-segments {
+    display: flex;
+    padding: 0.25rem;
+    gap: 0.25rem;
+    background: #f3f4f6;
+    border-radius: 0.65rem;
+}
+.upcoming-segments button {
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.45rem;
+}
+.upcoming-segments button[aria-pressed='true'] {
+    background: #fff;
+    color: #1d4ed8;
+    box-shadow: 0 1px 3px #0002;
+}
+.upcoming-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.65rem;
+    font-size: 0.875rem;
+}
+.upcoming-project-filter {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    max-width: 100%;
+    padding: 0.35rem 0.65rem;
+    border: 1px solid #d1d5db;
+    border-radius: 1rem;
+    font-size: 0.8rem;
+}
+.upcoming-project-filter[aria-pressed='false'] {
+    opacity: 0.45;
+    text-decoration: line-through;
+}
+.upcoming-project-dot {
+    display: inline-block;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+.upcoming-nav {
+    padding: 0.4rem 0.65rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.4rem;
+}
+.upcoming-nav:hover {
+    background: #eff6ff;
+}
+.upcoming-calendar {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    border-top: 1px solid #d1d5db;
+    border-left: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+.upcoming-weekday {
+    min-width: 0;
+    padding: 0.5rem 0.15rem;
+    text-align: center;
+    font-size: 0.75rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: #f9fafb;
+    border-right: 1px solid #d1d5db;
+    border-bottom: 1px solid #d1d5db;
+}
+.upcoming-day {
+    position: relative;
+    min-width: 0;
+    min-height: 9rem;
+    padding: 0.35rem;
+    border-right: 1px solid #d1d5db;
+    border-bottom: 1px solid #d1d5db;
+    background: #fff;
+}
+.upcoming-day.is-weekend {
+    background: #f9fafb;
+}
+.upcoming-day.is-other-month {
+    background: #f3f4f6;
+}
+.upcoming-day.is-other-month .upcoming-day-heading,
+.upcoming-day.is-other-month .upcoming-day-tasks {
+    opacity: 0.55;
+}
+.upcoming-day.is-weekend .upcoming-day-heading {
+    color: #6b7280;
+}
+.upcoming-day.is-today {
+    box-shadow: inset 0 0 0 2px #3b82f6;
+}
+.upcoming-day.is-today time {
+    background: #2563eb;
+    color: #fff;
+    border-radius: 50%;
+}
+.upcoming-add-day {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+.upcoming-add-day:hover {
+    background: #3b82f609;
+}
+.upcoming-add-day:focus-visible {
+    outline-offset: -3px !important;
+}
+.upcoming-day-heading {
+    position: relative;
+    pointer-events: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.2rem;
+    min-height: 1.75rem;
+    margin-bottom: 0.25rem;
+    font-size: 0.8rem;
+}
+.upcoming-day-heading time {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    flex-shrink: 0;
+}
+.upcoming-closure {
+    pointer-events: auto;
+    font-size: 0.6rem;
+    line-height: 1.1;
+    color: #92400e;
+    background: #fef3c7;
+    border-radius: 0.2rem;
+    padding: 0.15rem;
+    max-width: 100%;
+}
+.upcoming-day-tasks {
+    position: relative;
+    pointer-events: none;
+}
+.upcoming-task-chip {
+    display: block;
+    pointer-events: auto;
+    width: 100%;
+    min-width: 0;
+    margin-bottom: 0.2rem;
+    padding: 0.2rem 0.3rem;
+    border: 1px solid #e5e7eb;
+    border-left-width: 3px;
+    border-radius: 0.25rem;
+    text-align: left;
+    font-size: 0.75rem;
+    line-height: 1.35;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: #f3f4f6;
+}
+.upcoming-task-chip:hover {
+    background: #e5e7eb;
+}
+.upcoming-task-chip.is-overdue {
+    border-top-color: #ef4444;
+    border-right-color: #ef4444;
+    border-bottom-color: #ef4444;
+}
+.upcoming-task-chip.is-completed {
+    opacity: 0.5;
+    text-decoration: line-through;
+}
+.upcoming-task-chip:disabled {
+    opacity: 0.6;
+    cursor: progress;
+}
+.upcoming-more {
+    pointer-events: auto;
+    display: block;
+    max-width: 100%;
+    font-size: 0.7rem;
+    padding: 0.15rem;
+    color: #2563eb;
+    overflow-wrap: anywhere;
+}
+.upcoming-day-panel {
+    position: fixed;
+    z-index: 40;
+    width: 320px;
+    max-width: calc(100vw - 24px);
+    max-height: min(280px, calc(100vh - 24px));
+    overflow-y: auto;
+    padding: 0.75rem;
+    background: #fff;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    box-shadow: 0 8px 24px #0003;
+    font-size: 0.85rem;
+}
+.upcoming-agenda-group {
+    margin-bottom: 1.5rem;
+    scroll-margin-top: 5rem;
+}
+.upcoming-agenda-row {
+    display: grid;
+    grid-template-columns: 1.25rem minmax(0, 2fr) minmax(0, 1fr) minmax(
+            0,
+            1.4fr
+        ) minmax(0, 1fr);
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.8rem 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 0.8rem;
+}
+.upcoming-agenda-row:hover {
+    background: #f9fafb;
+}
+.upcoming-agenda-row > * {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+.upcoming-agenda-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+.upcoming-agenda-project {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+.upcoming-agenda-row.is-completed {
+    opacity: 0.5;
+}
+.upcoming-agenda-row.is-completed .upcoming-agenda-name {
+    text-decoration: line-through;
+}
+.upcoming-error {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.65rem;
+    margin-bottom: 0.75rem;
+    border-radius: 0.35rem;
+    background: #fef2f2;
+    color: #b91c1c;
+    font-size: 0.85rem;
+}
+.dark .upcoming-segments,
+.dark .upcoming-task-chip {
+    background: #1f2937;
+}
+.dark .upcoming-segments button[aria-pressed='true'] {
+    background: #374151;
+    color: #93c5fd;
+}
+.dark .upcoming-project-filter,
+.dark .upcoming-nav,
+.dark .upcoming-calendar,
+.dark .upcoming-day,
+.dark .upcoming-weekday,
+.dark .upcoming-day-panel {
+    border-color: #374151;
+}
+.dark .upcoming-day,
+.dark .upcoming-day-panel {
+    background: #111827;
+}
+.dark .upcoming-weekday,
+.dark .upcoming-day.is-weekend {
+    background: #182131;
+}
+.dark .upcoming-day.is-other-month {
+    background: #1f2937;
+}
+.dark .upcoming-day.is-weekend .upcoming-day-heading {
+    color: #9ca3af;
+}
+.dark .upcoming-closure {
+    color: #fde68a;
+    background: #78350f;
+}
+.dark .upcoming-task-chip {
+    border-color: #4b5563;
+}
+.dark .upcoming-task-chip.is-overdue {
+    border-top-color: #f87171;
+    border-right-color: #f87171;
+    border-bottom-color: #f87171;
+}
+.dark .upcoming-task-chip:hover,
+.dark .upcoming-nav:hover {
+    background: #374151;
+}
+.dark .upcoming-more {
+    color: #93c5fd;
+}
+.dark .upcoming-agenda-row {
+    border-color: #374151;
+}
+.dark .upcoming-agenda-row:hover {
+    background: #1f2937;
+}
+.dark .upcoming-error {
+    background: #450a0a;
+    color: #fca5a5;
+}
+@media (max-width: 767px) {
+    .upcoming-day {
+        padding: 0.15rem;
+        min-height: 8rem;
+    }
+    .upcoming-task-chip {
+        font-size: 0.65rem;
+        padding: 0.15rem;
+    }
+    .upcoming-more {
+        font-size: 0.6rem;
+    }
+    .upcoming-day-heading {
+        align-content: flex-start;
+        min-height: 2.9rem;
+    }
+    .upcoming-agenda-row {
+        grid-template-columns: 1.25rem minmax(0, 1fr) minmax(0, 1fr);
+    }
+    .upcoming-status {
+        grid-row: 1 / 3;
+    }
+    .upcoming-agenda-name {
+        grid-column: 2 / 4;
+    }
+    .upcoming-agenda-project {
+        grid-column: 2;
+    }
+    .upcoming-agenda-row time {
+        grid-column: 3;
+    }
+    .upcoming-agenda-row > span:last-child {
+        grid-column: 2 / 4;
+    }
+}

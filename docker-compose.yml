@@ -1,0 +1,18 @@
+services:
+  tududi:
+    image: pixel-office-tududi:0.87-po.3
+    build: .
+    container_name: pixel-office-tududi
+    env_file: .env
+    environment:
+      - TUDUDI_ALLOWED_ORIGINS=${TUDUDI_ALLOWED_ORIGINS:-http://localhost:3002,http://127.0.0.1:3002}
+      - TUDUDI_UPLOAD_PATH=/app/backend/uploads
+      # Runtime UID/GID configuration - set these to match your host user/group
+      - PUID=${PUID:-1001}
+      - PGID=${PGID:-1001}
+    volumes:
+      - ./tududi_db:/app/backend/db
+      - ./uploads:/app/backend/uploads
+    ports:
+      - "127.0.0.1:3002:3002"
+    restart: unless-stopped

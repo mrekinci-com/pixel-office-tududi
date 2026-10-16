@@ -1,0 +1,3 @@
+# Local work notes are excluded from release source archives.
+PIKSEL-OFIS-TESLIM.md export-ignore
+PIKSEL-OFIS-IS-TANIMI.md export-ignore

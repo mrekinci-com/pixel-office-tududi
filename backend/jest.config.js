@@ -1,0 +1,26 @@
+module.exports = {
+    testEnvironment: 'node',
+    setupFilesAfterEnv: ['<rootDir>/tests/helpers/setup.js'],
+    testMatch: ['<rootDir>/tests/**/*.test.js', '<rootDir>/tests/**/*.spec.js'],
+    collectCoverageFrom: [
+        'routes/**/*.js',
+        'models/**/*.js',
+        'middleware/**/*.js',
+        'services/**/*.js',
+        '!models/index.js',
+        '!**/*.test.js',
+        '!**/*.spec.js',
+    ],
+    coverageDirectory: 'coverage',
+    coverageReporters: ['text', 'lcov', 'html'],
+    verbose: false,
+    forceExit: true,
+    clearMocks: true,
+    resetMocks: true,
+    restoreMocks: true,
+    testTimeout: 30000,
+    maxWorkers: '100%',
+    moduleNameMapper: {
+        '^nanoid$': '<rootDir>/tests/mocks/nanoid.js',
+    },
+};
