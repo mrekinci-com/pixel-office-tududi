@@ -6,6 +6,16 @@
 
 [Pixel Office](https://github.com/mrekinci-com/pixel-office) stores its agents' tasks, projects, and notes in this application. [This repository](https://github.com/mrekinci-com/pixel-office-tududi) contains the task management application; the office dashboard and agent runners live in the separate Pixel Office project. It also works as a standalone task manager. The original project is [Chris Veleris / Tududi](https://github.com/chrisvel/tududi).
 
+## Screenshots
+
+Sample data only.
+
+![All tasks](docs/images/tasks.png)
+
+![Upcoming calendar](docs/images/upcoming.png)
+
+![About page](docs/images/about.png)
+
 ## Changes from upstream
 
 - A 90-day upcoming task window, monthly calendar and agenda views, project filtering, and drag-to-reschedule dates.

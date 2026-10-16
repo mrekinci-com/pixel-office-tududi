@@ -6,6 +6,16 @@
 
 [Piksel Ofis](https://github.com/mrekinci-com/pixel-office), ajanların görevlerini, projelerini ve notlarını bu uygulamada tutar. [Bu depo](https://github.com/mrekinci-com/pixel-office-tududi) yalnız iş defterini içerir; ofis paneli ve ajan çalıştırıcıları ayrı projededir. Tek başına görev yönetimi için de kullanılabilir. Orijinal proje [Chris Veleris / Tududi](https://github.com/chrisvel/tududi) adresindedir.
 
+## Ekran görüntüleri
+
+Yalnız örnek veriler.
+
+![Tüm görevler](docs/images/tasks.png)
+
+![Yaklaşan görevler takvimi](docs/images/upcoming.png)
+
+![Hakkında sayfası](docs/images/about.png)
+
 ## Orijinal sürümden farklar
 
 - Yaklaşan görevlerde 90 günlük pencere, aylık takvim ve gündem görünümleri; proje süzme ve görev tarihini sürükleyerek değiştirme.
